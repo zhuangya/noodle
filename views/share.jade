@@ -1,0 +1,17 @@
+extends layout
+
+block content
+  if pageStatus == 0
+    .status.successful
+      | Item Saved!
+    script
+      !function() {
+        setTimeout(function() {
+          window.close()
+        }, 2000);
+      }();
+  else
+    .status.error
+      | Bang, something wrong.
+      | Error code: #{pageStatus}
+      a(href="",title="refresh") Refresh

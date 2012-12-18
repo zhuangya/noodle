@@ -1,0 +1,10 @@
+extends layout
+
+block content
+  ul
+    each news in newsArray
+      li
+        span= new Date(news.addDate).toDateString()
+          | -
+
+        a(href="#{news.url}",title="#{news.title}") #{news.title} 
