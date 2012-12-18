@@ -31,5 +31,12 @@ app.get('/share/:title/:url', routes.share);
 app.get('/list', routes.list);
 
 http.createServer(app).listen(app.get('port'), function(){
+    process.send('online');
+    process.on('message', function(message) {
+        if (message === 'shutdown') {
+            performCleanup();
+            process.exit(0);
+        }
+    });
     console.log("Express server listening on port " + app.get('port'));
 });
